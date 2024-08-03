@@ -1,0 +1,790 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>seba</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+
+
+    <!-- Botón de Pausa para la Música -->
+
+    <style>
+        .pause-text {
+            position: fixed;
+            right: 80px;
+            top: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid #000;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pause-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1000;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .pause-btn i {
+            font-size: 24px;
+        }
+    </style>
+
+
+    <!-- Botón de Pausa para la Música -->
+    <div class="pause-btn" id="pause-btn">
+        <i class="fas fa-pause" id="pause-icon"></i>
+    </div>
+    <div class="pause-text" id="pause-text">
+        Pausar Canción
+    </div>
+
+    <!-- Reproductor de Música -->
+    <audio id="background-music" autoplay loop>
+        <source src="{% static 'audio/quedate.mp3' %}" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const music = document.getElementById('background-music');
+            const pauseBtn = document.getElementById('pause-btn');
+            const pauseIcon = document.getElementById('pause-icon');
+            const pauseText = document.getElementById('pause-text');
+
+            pauseBtn.addEventListener('click', function () {
+                if (music.paused) {
+                    music.play();
+                    pauseIcon.classList.remove('fa-play');
+                    pauseIcon.classList.add('fa-pause');
+                    pauseText.innerText = "Pausar Canción";
+                } else {
+                    music.pause();
+                    pauseIcon.classList.remove('fa-pause');
+                    pauseIcon.classList.add('fa-play');
+                    pauseText.innerText = "Reanudar Canción";
+                }
+            });
+        });
+    </script>
+<!--fin de musica -->
+
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+        <a href="{% url 'index' %}" class="navbar-brand d-block d-lg-none">
+            <h1 class="font-secondary text-white mb-n2">EL <span class="text-primary">&</span> ELLA</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0">
+                <a href="#home" class="nav-item nav-link active">inicio</a>
+                <a href="#about" class="nav-item nav-link">nosotros</a>
+                <a href="#story" class="nav-item nav-link">historia</a>
+                <a href="#gallery" class="nav-item nav-link">galeria</a>
+            </div>
+            <a href="{% url 'index' %}" class="navbar-brand mx-5 d-none d-lg-block">
+                <h1 class="font-secondary text-white mb-n2">el <span class="text-primary">&</span> ella</h1>
+            </a>
+            <div class="navbar-nav mr-auto py-0">
+                <a href="#familia" class="nav-item nav-link">Familia</a>
+                <a href="#event" class="nav-item nav-link">Evento</a>
+                <a href="#rsvp" class="nav-item nav-link">RSVP</a>
+                <a href="#contact" class="nav-item nav-link">Contactanos</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+
+<!-- Carrusel Inicio -->
+<div class="container-fluid p-0 mb-5 pb-5" id="home">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
+                <img class="position-absolute w-100 h-100" src="{% static 'img/carousel-1.jpg' %}" style="object-fit: cover;">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4">EL & Ella</h1>
+                        <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
+                            <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">Nos casaremos</h3>
+                        </div>
+                        <button type="button" class="btn-play mx-auto" data-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-item position-relative" style="height: 100vh; min-height: 400px;">
+                <img class="position-absolute w-100 h-100" src="{% static 'img/carousel-2.jpg' %}" style="object-fit: cover;">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h1 class="display-1 font-secondary text-white mt-n3 mb-md-4">Jack & Rose</h1>
+                        <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
+                            <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">Vamos a Casarnos</h3>
+                        </div>
+                        <button type="button" class="btn-play mx-auto" data-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev justify-content-start" href="#header-carousel" data-slide="prev">
+            <div class="btn btn-primary px-0" style="width: 68px; height: 68px;">
+                <span class="carousel-control-prev-icon mt-3"></span>
+            </div>
+        </a>
+        <a class="carousel-control-next justify-content-end" href="#header-carousel" data-slide="next">
+            <div class="btn btn-primary px-0" style="width: 68px; height: 68px;">
+                <span class="carousel-control-next-icon mt-3"></span>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- Carrusel Fin -->
+
+
+
+    <!-- Video Modal Start -->
+    <!-- <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                    16:9 aspect ratio -->
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/76979871" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Video Modal End -->
+
+
+    <!-- Video Modal Start -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video class="embed-responsive-item" controls>
+                        <source src="{% static 'videos/LA_MOROCHA.mp4' %}" type="video/mp4">
+                        Tu navegador no soporta la etiqueta de video.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Video Modal End -->
+
+
+
+
+
+
+
+<!-- Acerca de Inicio -->
+<div class="container-fluid py-5" id="about">
+    <div class="container py-5">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Acerca de</h6>
+            <h1 class="font-secondary display-4">Novio & Novia</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="row m-0 mb-4 mb-md-0 pb-2 pb-md-0">
+            <div class="col-md-6 p-0 text-center text-md-right">
+                <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
+                    <h3 class="mb-3">El Novio</h3>
+                    <p>Seba es una persona cariñosa y aventurera. Siempre está buscando nuevas experiencias y disfruta de cada momento de la vida. Su amor por Rose es infinito y espera con ansias compartir el resto de su vida con ella.</p>
+                    <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-male text-primary pr-3"></i>Jack</h3>
+                    <div class="position-relative">
+                        <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 p-0" style="min-height: 400px;">
+                <img class="position-absolute w-100 h-100" src="{% static 'img/about-1.jpg' %}" style="object-fit: cover;">
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-md-6 p-0" style="min-height: 400px;">
+                <img class="position-absolute w-100 h-100" src="{% static 'img/about-2.jpg' %}" style="object-fit: cover;">
+            </div>
+            <div class="col-md-6 p-0 text-center text-md-left">
+                <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
+                    <h3 class="mb-3">La Novia</h3>
+                    <p>Ella es una mujer encantadora y llena de vida. Su alegría es contagiosa y su amor por Jack es incondicional. Espera con ilusión el día de su boda y todos los momentos maravillosos que compartirán juntos.</p>
+                    <h3 class="font-secondary font-weight-normal text-muted mb-3"><i class="fa fa-female text-primary pr-3"></i>Rose</h3>
+                    <div class="position-relative">
+                        <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-primary btn-square mr-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Acerca de Fin -->
+
+<!-- Historia de Amor Inicio -->
+<div class="container-fluid py-5" id="story">
+    <div class="container pt-5 pb-3">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Historia</h6>
+            <h1 class="font-secondary display-4">Nuestra Historia de Amor</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="container timeline position-relative p-0">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-right">
+                    <img class="img-fluid mr-md-3" src="{% static 'img/story-1.jpg' %}" alt="">
+                </div>
+                <div class="col-md-6 text-center text-md-left">
+                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
+                        <h4 class="mb-2">Primer Encuentro</h4>
+                        <p class="text-uppercase mb-2">01 Ene 2050</p>
+                        <p class="m-0">Nuestro primer encuentro fue mágico y especial. Nos conocimos en una fiesta y desde ese momento supimos que había una conexión especial entre nosotros.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
+                        <h4 class="mb-2">Primera Cita</h4>
+                        <p class="text-uppercase mb-2">01 Ene 2050</p>
+                        <p class="m-0">Nuestra primera cita fue en un pequeño café en la ciudad. Pasamos horas hablando y riendo, y supe que era el comienzo de algo increíble.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-md-left">
+                    <img class="img-fluid ml-md-3" src="{% static 'img/story-2.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-right">
+                    <img class="img-fluid mr-md-3" src="{% static 'img/story-3.jpg' %}" alt="">
+                </div>
+                <div class="col-md-6 text-center text-md-left">
+                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
+                        <h4 class="mb-2">Propuesta</h4>
+                        <p class="text-uppercase mb-2">01 Ene 2050</p>
+                        <p class="m-0">La propuesta fue un momento inolvidable. En un hermoso atardecer en la playa, me arrodillé y le pedí que pasara el resto de su vida conmigo. Ella dijo que sí.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 mr-md-3">
+                        <h4 class="mb-2">Compromiso</h4>
+                        <p class="text-uppercase mb-2">01 Ene 2050</p>
+                        <p class="m-0">Nuestro compromiso fue celebrado con amigos y familiares. Fue un día lleno de amor, risas y mucha felicidad mientras nos preparamos para nuestra vida juntos.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-md-left">
+                    <img class="img-fluid ml-md-3" src="{% static 'img/story-4.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Historia de Amor Fin -->
+
+
+
+<!-- Galería Inicio -->
+<div class="container-fluid bg-gallery" id="gallery" style="padding: 120px 0; margin: 90px 0;">
+    <div class="section-title position-relative text-center" style="margin-bottom: 120px;">
+        <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Galería</h6>
+        <h1 class="font-secondary display-4 text-white">Nuestra Galería de Fotos</h1>
+        <i class="far fa-heart text-white"></i>
+    </div>
+    <div class="owl-carousel gallery-carousel">
+        <div class="gallery-item">
+            <img class="img-fluid w-100" src="{% static 'img/gallery-1.jpg' %}" alt="">
+            <a href="{% static 'img/gallery-1.jpg' %}" data-lightbox="gallery">
+                <i class="fa fa-2x fa-plus text-white"></i>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <img class="img-fluid w-100" src="{% static 'img/gallery-2.jpg' %}" alt="3">
+            <a href="{% static 'img/gallery-2.jpg' %}" data-lightbox="gallery">
+                <i class="fa fa-2x fa-plus text-white"></i>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <img class="img-fluid w-100" src="{% static 'img/gallery-3.jpg' %}" alt="">
+            <a href="{% static 'img/gallery-3.jpg' %}" data-lightbox="gallery">
+                <i class="fa fa-2x fa-plus text-white"></i>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <img class="img-fluid w-100" src="{% static 'img/gallery-4.jpg' %}" alt="">
+            <a href="{% static 'img/gallery-4.jpg' %}" data-lightbox="gallery">
+                <i class="fa fa-2x fa-plus text-white"></i>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <img class="img-fluid w-100" src="{% static 'img/gallery-5.jpg' %}" alt="">
+            <a href="{% static 'img/gallery-5.jpg' %}" data-lightbox="gallery">
+                <i class="fa fa-2x fa-plus text-white"></i>
+            </a>
+        </div>
+        <div class="gallery-item">
+            <img class="img-fluid w-100" src="{% static 'img/gallery-6.jpg' %}" alt="">
+            <a href="{% static 'img/gallery-6.jpg' %}" data-lightbox="gallery">
+                <i class="fa fa-2x fa-plus text-white"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Galería Fin -->
+
+
+<!-- Evento Inicio -->
+<div class="container-fluid py-5" id="event">
+    <div class="container py-5">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Evento</h6>
+            <h1 class="font-secondary display-4">Nuestro Evento de Boda</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <h5 class="font-weight-normal text-muted mb-3 pb-3">¡Nos complace anunciar que nuestra boda está cerca! Hemos planeado un evento inolvidable para compartir con todos nuestros seres queridos. Acompáñanos en un día lleno de alegría, amor y celebración.</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 border-right border-primary">
+                <div class="text-center text-md-right mr-md-3 mb-4 mb-md-0">
+                    <img class="img-fluid mb-4" src="{% static 'img/event-1.jpg' %}" alt="">
+                    <h4 class="mb-3">La Recepción</h4>
+                    <p class="mb-2">123 Calle, Nueva York, EE.UU.</p>
+                    <p class="mb-0">12:00AM - 13:00PM</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center text-md-left ml-md-3">
+                    <img class="img-fluid mb-4" src="{% static 'img/event-2.jpg' %}" alt="">
+                    <h4 class="mb-3">Fiesta de Boda</h4>
+                    <p class="mb-2">123 Calle, Nueva York, EE.UU.</p>
+                    <p class="mb-0">12:00AM - 13:00PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Evento Fin -->
+
+
+<!-- Amigos & Familia Inicio -->
+<div class="container-fluid py-5" id="familia">
+    <div class="container pt-5 pb-3">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Amigos & Familia</h6>
+            <h1 class="font-secondary display-4">Padrinos & Damas de Honor</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mb-2">
+                <ul class="list-inline mb-4" id="portfolio-flters">
+                    <li class="btn btn-outline-primary font-weight-bold m-1 py-2 px-4" data-filter=".first">Padrinos</li>
+                    <li class="btn btn-outline-primary font-weight-bold m-1 py-2 px-4" data-filter=".second">Damas de Honor</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row portfolio-container">
+            <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid w-100" src="{% static 'img/groomsmen-1.jpg' %}" alt="">
+                    <div class="bg-secondary text-center p-4">
+                        <h4 class="mb-3">Nombre Completo</h4>
+                        <p class="text-uppercase">Padrino</p>
+                        <div class="d-inline-block">
+                            <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid w-100" src="{% static 'img/bridesmaid-1.jpg' %}" alt="">
+                    <div class="bg-secondary text-center p-4">
+                        <h4 class="mb-3">Nombre Completo</h4>
+                        <p class="text-uppercase">Dama de Honor</p>
+                        <div class="d-inline-block">
+                            <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid w-100" src="{% static 'img/groomsmen-2.jpg' %}" alt="">
+                    <div class="bg-secondary text-center p-4">
+                        <h4 class="mb-3">Nombre Completo</h4>
+                        <p class="text-uppercase">Padrino</p>
+                        <div class="d-inline-block">
+                            <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid w-100" src="{% static 'img/bridesmaid-2.jpg' %}" alt="">
+                    <div class="bg-secondary text-center p-4">
+                        <h4 class="mb-3">Nombre Completo</h4>
+                        <p class="text-uppercase">Dama de Honor</p>
+                        <div class="d-inline-block">
+                            <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid w-100" src="{% static 'img/groomsmen-3.jpg' %}" alt="">
+                    <div class="bg-secondary text-center p-4">
+                        <h4 class="mb-3">Nombre Completo</h4>
+                        <p class="text-uppercase">Padrino</p>
+                        <div class="d-inline-block">
+                            <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                <div class="position-relative mb-2">
+                    <img class="img-fluid w-100" src="{% static 'img/bridesmaid-3.jpg' %}" alt="">
+                    <div class="bg-secondary text-center p-4">
+                        <h4 class="mb-3">Nombre Completo</h4>
+                        <p class="text-uppercase">Dama de Honor</p>
+                        <div class="d-inline-block">
+                            <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Amigos & Familia Fin -->
+
+
+<!-- RSVP Inicio -->
+<div class="container-fluid py-5" id="rsvp">
+    <div class="container py-5">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">RSVP</h6>
+            <h1 class="font-secondary display-4">Únete a Nuestra Fiesta</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <input type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Tu Nombre"/>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="email" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Tu Correo"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <select class="form-control bg-secondary border-0" style="height: 52px;">
+                                    <option>Número de Invitados</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <select class="form-control bg-secondary border-0" style="height: 52px;">
+                                    <option>Asistiré a</option>
+                                    <option>Todos los Eventos</option>
+                                    <option>Fiesta de Boda</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control bg-secondary border-0 py-2 px-3" rows="5" placeholder="Mensaje" required="required"></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary font-weight-bold py-3 px-5" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- RSVP Fin -->
+
+<!-- Colaboración Monetaria Inicio -->
+<div class="container-fluid py-5" id="donation">
+    <div class="container py-5">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Colaboración</h6>
+            <h1 class="font-secondary display-4">Apoya Nuestra Boda</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center bg-secondary p-5">
+                    <p class="mb-4">Tu presencia en nuestra boda es el mejor regalo que podríamos recibir. Sin embargo, si deseas contribuir monetariamente para ayudarnos a comenzar nuestra vida juntos, estaríamos muy agradecidos. ¡Gracias por tu apoyo y amor!</p>
+                    <a href="{% url 'cbu'  %}" class="btn btn-primary font-weight-bold py-3 px-5">Colaborar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- Añadir al Calendario Inicio, descarga archivo y lo agrega al calendario -->
+ <div class="container-fluid py-5" id="add-to-calendar">
+    <div class="container py-5">
+        <div class="section-title position-relative text-center">
+            <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Calendario</h6>
+            <h1 class="font-secondary display-4">Añadir a tu Calendario</h1>
+            <i class="far fa-heart text-dark"></i>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center bg-secondary p-5">
+                    <p class="mb-4">Haz clic en el botón a continuación para añadir la fecha de nuestra boda a tu calendario.</p>
+                    <a href="{% static 'wedding.ics' %}" class="btn btn-primary font-weight-bold py-3 px-5" download="Boda_Jack_Rose.ics">Añadir al Calendario</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'js/script.js' %}"></script>
+<!-- Aquí puedes agregar más enlaces a JavaScript si es necesario -->
+<!-- Añadir al Calendario Fin -->
+
+
+
+    <!-- Añadir al Calendario Inicio -->
+    <div class="container-fluid py-5" id="add-to-calendar">
+        <div class="container py-5">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Calendario</h6>
+                <h1 class="font-secondary display-4">Añadir a tu Calendario</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center bg-secondary p-5">
+                        <p class="mb-4">Haz clic en el botón a continuación para añadir la fecha de nuestra boda a tu calendario.</p>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+EL+%26+ELLA&dates=20231201T160000Z/20231201T200000Z&details=La+boda+de+EL+%26+ELLA+se+celebrará+el+1+de+diciembre+de+2023.+%C2%A1Esperamos+verte+all%C3%AD!&location=Direccion+del+Evento&sf=true&output=xml" 
+                            class="btn btn-primary font-weight-bold py-3 px-5" target="_blank">
+                            Añadir al Calendario
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Añadir al Calendario Fin -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+
+
+
+    <!-- Botón de WhatsApp -->
+<div class="whatsapp-button-container">
+    <a href="https://wa.me/<5493644585260>?text=< confirmo que asistirè, paso a describir quienes y cuàntos somos>" target="_blank">
+        <button type="button" class="btn btn-success">
+            Contactar por WhatsApp
+        </button>
+    </a>
+</div>
+
+
+
+<div class="whatsapp-button-container">
+    <a href="https://wa.me/5493644670731?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" class="whatsapp-button">
+        <img src="{% static 'img/icono-wasap.png' %}" alt="WhatsApp" width="24" height="24">
+        Para confirmar por WhatsApp
+    </a>
+</div>
+
+<style>
+    .whatsapp-button-container {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+    
+    .whatsapp-button {
+        display: flex;
+        align-items: center;
+        background-color: #25D366;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+        background-color: #1EBE57;
+    }
+
+    .whatsapp-button img {
+        margin-left: 10px;
+    }
+</style>
+
+
+<!-- Footer Inicio -->
+<div class="container-fluid bg-dark text-white py-5" id="contacto" style="margin-top: 90px;">
+    <div class="container text-center py-5">
+        <div class="section-title position-relative text-center">
+            <h1 class="font-secondary display-3 text-white">Gracias</h1>
+            <i class="far fa-heart text-white"></i>
+        </div>
+        <div class="d-flex justify-content-center mb-4">
+            <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="d-flex justify-content-center py-2">
+            <p class="text-white" href="#">info@ejemplo.com</p>
+            <span class="px-3">|</span>
+            <p class="text-white" href="#">+012 345 6789</p>
+        </div>
+        <p class="m-0">&copy; <a class="text-primary" href="#">el y ella</a>. Diseñado por PRODUCCIONES "HADOKEN, piruè" <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+        </p>
+    </div>
+</div>
+<!-- Footer Fin -->
+
+
+
+    <!-- Scroll to Bottom -->
+    <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-outline-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

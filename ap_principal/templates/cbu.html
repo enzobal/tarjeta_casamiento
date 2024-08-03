@@ -1,0 +1,49 @@
+{% load static %}
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Colaboración Monetaria</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Aquí puedes agregar más enlaces a CSS si es necesario -->
+    </head>
+    
+    <body>
+
+    
+        <!-- Información CBU Inicio -->
+        <div class="container-fluid py-5" id="cbu">
+            <div class="container py-5">
+                <div class="section-title position-relative text-center">
+                    <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">CBU</h6>
+                    <h1 class="font-secondary display-4">Detalles Bancarios</h1>
+                    <i class="far fa-heart text-dark"></i>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center bg-secondary p-5">
+                            <h3 class="mb-4">CBU: 1234567890123456789012</h3>
+                            <p class="mb-4">Banco: Banco Ejemplo</p>
+                            <p class="mb-4">Titular: Jack & Rose</p>
+                            <p>¡Gracias por tu generosidad y apoyo!</p>
+                            <a href="{% url 'index' %}" class="btn btn-primary font-weight-bold py-3 px-5">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Información CBU Fin -->
+    
+        <!-- Aquí puedes agregar más secciones o contenido adicional -->
+    
+        <!-- Scripts -->
+        <script src="{% static 'js/script.js' %}"></script>
+        <!-- Aquí puedes agregar más enlaces a JavaScript si es necesario -->
+    </body>
+    
+    </html>
+    
